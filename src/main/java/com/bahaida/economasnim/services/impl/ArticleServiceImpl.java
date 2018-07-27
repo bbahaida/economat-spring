@@ -1,29 +1,29 @@
 package com.bahaida.economasnim.services.impl;
 
 import com.bahaida.economasnim.persistence.domain.Article;
-import com.bahaida.economasnim.persistence.repositories.ArticleRipository;
+import com.bahaida.economasnim.persistence.repositories.ArticleRepository;
 import com.bahaida.economasnim.services.ArticleService;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
-
-import java.util.List;
 
 @Service
 public class ArticleServiceImpl implements ArticleService {
 
-    private ArticleRipository articleRipository;
+    private ArticleRepository articleRepository;
 
-    public ArticleServiceImpl(ArticleRipository articleRipository) {
-        this.articleRipository = articleRipository;
+    public ArticleServiceImpl(ArticleRepository articleRipository) {
+        this.articleRepository = articleRipository;
     }
 
     @Override
-    public List<Article> getAll() {
-        return articleRipository.findAll();
+    public Page<Article> getAll(Pageable pageable) {
+        return articleRepository.findAll(pageable);
     }
 
     @Override
     public Article save(Article article) {
-        return null;
+        return articleRepository.save(article);
     }
 
     @Override
@@ -33,7 +33,14 @@ public class ArticleServiceImpl implements ArticleService {
 
     @Override
     public Article update(Long id, Article article) {
-        return null;
+        Article article1 = articleRepository.getOne(id);
+        if(!article1.getDesignation().equals(article.getDesignation())){
+            article1.setDesignation(article.getDesignation());
+        }
+        if (article1.getPrixUnitaire() != article.getPrixUnitaire()){
+            article1.setPrixUnitaire(article.getPrixUnitaire());
+        }
+        return articleRepository.save(article1);
     }
 
     @Override

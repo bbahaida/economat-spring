@@ -23,7 +23,7 @@ public class EconomaSnimApplication {
 
 	/*@Bean
 	CommandLineRunner runner(
-			CategorieRepository categorieRepository, ArticleRipository articleRipository,
+			CategorieRepository categorieRepository, ArticleRepository articleRipository,
 			AgentRepository agentRepository, CommandRepository commandRepository, ArticleCommandRepository articleCommandRepository){
 		return args -> {
 

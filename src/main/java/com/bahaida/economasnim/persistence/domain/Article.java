@@ -63,4 +63,13 @@ public class Article implements Serializable {
     public void setCommands(List<ArticleCommand> commands) {
         this.commands = commands;
     }
+
+    @Override
+    public String toString() {
+        return "Article{" +
+                "code=" + code +
+                ", designation='" + designation + '\'' +
+                ", prixUnitaire=" + prixUnitaire +
+                '}';
+    }
 }
